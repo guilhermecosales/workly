@@ -1,0 +1,21 @@
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: workly_postgres
+    environment:
+      POSTGRES_USER: workly
+      POSTGRES_PASSWORD: workly
+      POSTGRES_DB: workly_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - workly_network
+
+volumes:
+  postgres_data:
+
+networks:
+  workly_network:
+    driver: bridge
