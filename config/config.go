@@ -27,3 +27,7 @@ func GetLogger(p string) *Logger {
 	logger = NewLogger(p)
 	return logger
 }
+
+func GetDatabase() *gorm.DB {
+	return db
+}
