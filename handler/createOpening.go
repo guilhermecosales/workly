@@ -24,14 +24,7 @@ func CreateOpening(context *gin.Context) {
 	}
 
 	// Map the request to the Opening schema
-	opening := schemas.Opening{
-		Role:     request.Role,
-		Company:  request.Company,
-		Location: request.Location,
-		Remote:   *request.Remote,
-		Link:     request.Link,
-		Salary:   request.Salary,
-	}
+	opening := mapToOpening(request)
 
 	// Insert into the database
 	if err := db.Create(&opening).Error; err != nil {
@@ -40,7 +33,28 @@ func CreateOpening(context *gin.Context) {
 		return
 	}
 
-	openingResponse := schemas.OpeningResponse{
+	// Map the opening schema to the response schema
+	openingResponse := mapToOpeningResponse(opening)
+
+	// Send success response
+	sendSuccessResponse(context, "Create Opening successfully", openingResponse)
+}
+
+func mapToOpening(request CreateOpeningRequest) schemas.Opening {
+	logger.Debugf("Mapping request to Opening schema: %+v", request)
+	return schemas.Opening{
+		Role:     request.Role,
+		Company:  request.Company,
+		Location: request.Location,
+		Remote:   *request.Remote,
+		Link:     request.Link,
+		Salary:   request.Salary,
+	}
+}
+
+func mapToOpeningResponse(opening schemas.Opening) schemas.OpeningResponse {
+	logger.Debugf("Mapping Opening schema to response: %+v", opening)
+	return schemas.OpeningResponse{
 		Id:        opening.ID,
 		Role:      opening.Role,
 		Company:   opening.Company,
@@ -51,7 +65,4 @@ func CreateOpening(context *gin.Context) {
 		CreatedAt: opening.CreatedAt,
 		UpdatedAt: opening.UpdatedAt,
 	}
-
-	// Send success response
-	sendSuccessResponse(context, "Create Opening successfully", openingResponse)
 }
