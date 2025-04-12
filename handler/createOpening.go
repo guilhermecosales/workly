@@ -40,6 +40,18 @@ func CreateOpening(context *gin.Context) {
 		return
 	}
 
+	openingResponse := schemas.OpeningResponse{
+		Id:        opening.ID,
+		Role:      opening.Role,
+		Company:   opening.Company,
+		Location:  opening.Location,
+		Remote:    opening.Remote,
+		Link:      opening.Link,
+		Salary:    opening.Salary,
+		CreatedAt: opening.CreatedAt,
+		UpdatedAt: opening.UpdatedAt,
+	}
+
 	// Send success response
-	sendSuccessResponse(context, "Create Opening successfully", opening)
+	sendSuccessResponse(context, "Create Opening successfully", openingResponse)
 }
