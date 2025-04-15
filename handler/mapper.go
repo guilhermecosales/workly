@@ -26,5 +26,6 @@ func mapToOpeningResponse(opening schemas.Opening) schemas.OpeningResponse {
 		Salary:    opening.Salary,
 		CreatedAt: opening.CreatedAt,
 		UpdatedAt: opening.UpdatedAt,
+		DeletedAt: opening.DeletedAt.Time,
 	}
 }
