@@ -17,7 +17,7 @@ func initializeRoutes(router *gin.Engine) {
 
 		v1.POST("/openings", handler.CreateOpening)
 
-		v1.PUT("/openings", handler.UpdateOpening)
+		v1.PUT("/openings/:openingId", handler.UpdateOpening)
 
 		v1.DELETE("/openings/:openingId", handler.DeleteOpening)
 	}
