@@ -124,13 +124,13 @@ By default, the server will run on `http://localhost:8080`.
 * List jobs:
 
   ```bash
-  curl http://localhost:8080/jobs
+  curl http://localhost:8080/openings
   ```
 
 * Create a job:
 
   ```bash
-  curl -X POST http://localhost:8080/jobs \
+  curl -X POST http://localhost:8080/openings \
     -H "Content-Type: application/json" \
     -d '{
       "title": "Software Engineer",
@@ -144,7 +144,7 @@ By default, the server will run on `http://localhost:8080`.
 * Update a job:
 
   ```bash
-  curl -X PUT http://localhost:8080/jobs/1 \
+  curl -X PUT http://localhost:8080/openings/1 \
     -H "Content-Type: application/json" \
     -d '{
       "title": "Senior Software Engineer",
@@ -155,7 +155,7 @@ By default, the server will run on `http://localhost:8080`.
 * Delete a job:
 
   ```bash
-  curl -X DELETE http://localhost:8080/jobs/1
+  curl -X DELETE http://localhost:8080/openings/1
   ```
 
 ---
